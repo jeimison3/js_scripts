@@ -38,9 +38,18 @@ function FormViewImg(img){
 	
 	
 	var divImage = document.createElement( "div" );
+	if(window.innerHeight<window.innerWidth){
 	
 	var alturaImg = (window.innerHeight*0.9);
-	var larguraImg = (img.width/img.height)*alturaImg;
+		if(img.naturalWidth===undefined)
+		var larguraImg = (img.width/img.height)*alturaImg;
+		else var larguraImg = (img.naturalWidth/img.naturalHeight)*alturaImg;
+	}else{
+	var larguraImg = (window.innerWidth*0.9);
+	if(img.naturalWidth===undefined)
+	var alturaImg = (img.height/img.width)*larguraImg;
+	else var alturaImg = (img.naturalHeight/img.naturalWidth)*larguraImg;
+	}
 	
 	difLarg = (window.innerWidth-larguraImg)/2;
 	difAlt = (window.innerHeight-alturaImg)/2;
@@ -52,6 +61,7 @@ function FormViewImg(img){
 	//$(divImage).css("height","90%");
 	$(divImage).css("top",(difAlt+window.scrollY)+"px");
 	$(divImage).css("left",(difLarg+window.scrollX)+"px");
+	$(divImage).hide();
 	
 	$(hideBack).css("z-index","2147483646");
 	$(divImage).css("z-index","2147483647");
@@ -69,22 +79,28 @@ function FormViewImg(img){
 	divImagem=divImage;
 	$(divImage).append( innerImg );
 	ImageFocus=true;
+	
+	//Efeito de exibir
+	$(divImage).fadeIn(600);
+	
 	$(innerImg).click(function(){
+		//Efeito de esconder
+		$(divImage).fadeOut(500,function(){
 		$(hideBack).remove();
 		$(divImage).remove();
 		$(innerImg).remove();
+		});
 	ImageFocus=false;
 	});
 }
 
 $(window).scroll(function(){
+	if( ImageFocus ){
 var pY = window.scrollY+difAlt;
 var pX = window.scrollX+difLarg;
-var pos_top  = $(divImagem).offset().top;
-var pos_left = $(divImagem).offset().left;
 
 	$(divImagem).css("top",pY+"px");
 	$(divImagem).css("left",pX+"px");
-
+}
 //alert(screen.width+" e "+$(window).width());
 });
