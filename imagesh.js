@@ -43,7 +43,7 @@ function FormViewImg(img){
 		Valor2=(window.innerWidth>img.width);
 		else Valor2=(window.innerWidth>img.naturalWidth);
 	
-	if((window.innerHeight<window.innerWidth)&&(Valor2)){
+	if((window.innerHeight<window.innerWidth)||(Valor2)){
 	
 	var alturaImg = (window.innerHeight*0.9);
 		if(img.naturalWidth===undefined)
