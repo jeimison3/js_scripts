@@ -36,16 +36,16 @@ function FormViewImg(img){
 	var divImage = document.createElement( "div" );
 		var Valor2 = false;
 		if(img.naturalWidth===undefined)
-		Valor2=(window.innerWidth>img.width);
-		else Valor2=(window.innerWidth>img.naturalWidth);
+		Valor2=(window.innerWidth>img.width)&&(img.height>img.width);
+		else Valor2=(window.innerWidth>img.naturalWidth)&&(img.naturalHeight>img.naturalWidth);
 	
-	if((window.innerHeight<window.innerWidth)||(Valor2)){
+	if((Valor2)){//Altera largura usando altura
 	
 	var alturaImg = (window.innerHeight*0.9);
 		if(img.naturalWidth===undefined)
 		var larguraImg = (img.width/img.height)*alturaImg;
 		else var larguraImg = (img.naturalWidth/img.naturalHeight)*alturaImg;
-	}else{
+	}else{     //Altera altura usando largura
 	var larguraImg = (window.innerWidth*0.9);
 	if(img.naturalWidth===undefined)
 	var alturaImg = (img.height/img.width)*larguraImg;
@@ -59,8 +59,10 @@ function FormViewImg(img){
 	$(divImage).css("background-color","white");
 	$(divImage).css("width",larguraImg+"px");
 	$(divImage).css("height",alturaImg+"px");
-	$(divImage).css("top",(difAlt+document.documentElement.scrollTop)+"px");
-	$(divImage).css("left",(difLarg+document.documentElement.scrollLeft)+"px");
+	var y = window.pageYOffset || document.documentElement.scrollTop;
+	var x = window.pageXOffset || document.documentElement.scrollLeft;
+	$(divImage).css("top",(difAlt+y)+"px");
+	$(divImage).css("left",(difLarg+x)+"px");
 	$(divImage).hide();
 	
 	$(hideBack).css("z-index","2147483646");
@@ -110,6 +112,8 @@ function FormViewImg(img){
 
 $(window).scroll(function(){
 	if( ImageFocus ){
+		var y = window.pageYOffset || document.documentElement.scrollTop;
+		var x = window.pageXOffset || document.documentElement.scrollLeft;
 var pY = document.documentElement.scrollTop+difAlt;
 var pX = document.documentElement.scrollLeft+difLarg;
 	$(divImagem).css("top",pY+"px");
