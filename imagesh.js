@@ -83,6 +83,7 @@ function FormViewImg(img){
 	//Efeito de exibir
 	$(divImage).fadeIn(600);
 	
+	//Clique na imagem fecha
 	$(innerImg).click(function(){
 		//Efeito de esconder
 		$(divImage).fadeOut(500,function(){
@@ -92,6 +93,19 @@ function FormViewImg(img){
 		});
 	ImageFocus=false;
 	});
+	
+	//Clique no fundo fecha
+	$(hideBack).click(function(){
+		//Efeito de esconder
+		$(divImage).fadeOut(500,function(){
+		$(hideBack).remove();
+		$(divImage).remove();
+		$(innerImg).remove();
+		});
+	ImageFocus=false;
+	});
+	
+	
 }
 
 $(window).scroll(function(){
