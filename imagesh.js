@@ -59,8 +59,8 @@ function FormViewImg(img){
 	$(divImage).css("background-color","white");
 	$(divImage).css("width",larguraImg+"px");
 	$(divImage).css("height",alturaImg+"px");
-	$(divImage).css("top",(difAlt+window.scrollY)+"px");
-	$(divImage).css("left",(difLarg+window.scrollX)+"px");
+	$(divImage).css("top",(difAlt+document.documentElement.scrollTop)+"px");
+	$(divImage).css("left",(difLarg+document.documentElement.scrollLeft)+"px");
 	$(divImage).hide();
 	
 	$(hideBack).css("z-index","2147483646");
@@ -110,8 +110,8 @@ function FormViewImg(img){
 
 $(window).scroll(function(){
 	if( ImageFocus ){
-var pY = window.scrollY+difAlt;
-var pX = window.scrollX+difLarg;
+var pY = document.documentElement.scrollTop+difAlt;
+var pX = document.documentElement.scrollLeft+difLarg;
 	$(divImagem).css("top",pY+"px");
 	$(divImagem).css("left",pX+"px");
 }
