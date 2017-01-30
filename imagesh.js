@@ -114,8 +114,8 @@ $(window).scroll(function(){
 	if( ImageFocus ){
 		var y = window.pageYOffset || document.documentElement.scrollTop;
 		var x = window.pageXOffset || document.documentElement.scrollLeft;
-var pY = document.documentElement.scrollTop+difAlt;
-var pX = document.documentElement.scrollLeft+difLarg;
+var pY = y+difAlt;
+var pX = x+difLarg;
 	$(divImagem).css("top",pY+"px");
 	$(divImagem).css("left",pX+"px");
 }
