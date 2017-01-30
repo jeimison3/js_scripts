@@ -3,22 +3,19 @@ function setup(ClassOnClickName){
 	SetupCallback(ClassOnClickName);
 	}
 }
-var imagens;
 SetupCallback = function(value1){
-		$(document).ready(function(){
-			
+	$(document).ready(function(){
 		if(value1!=""){
-		imagens = $('.'+value1);
+		var imagens = $('.'+value1);
 		}else{
-		imagens = $('img');
+		var imagens = $('img');
 		}
 		imagens.each(function(num,elm){
 			$(elm).click(function(){
 				FormViewImg(this);
 			});
 		});
-		
-		});
+	});
 };
 
 var divImagem;
@@ -35,7 +32,6 @@ function FormViewImg(img){
 	$(hideBack).css("height",$(document).height()+"px");
 	$(hideBack).css("top","0px");
 	$(hideBack).css("left","0px");
-	
 	
 	var divImage = document.createElement( "div" );
 		var Valor2 = false;
@@ -63,7 +59,6 @@ function FormViewImg(img){
 	$(divImage).css("background-color","white");
 	$(divImage).css("width",larguraImg+"px");
 	$(divImage).css("height",alturaImg+"px");
-	//$(divImage).css("height","90%");
 	$(divImage).css("top",(difAlt+window.scrollY)+"px");
 	$(divImage).css("left",(difLarg+window.scrollX)+"px");
 	$(divImage).hide();
@@ -103,9 +98,7 @@ $(window).scroll(function(){
 	if( ImageFocus ){
 var pY = window.scrollY+difAlt;
 var pX = window.scrollX+difLarg;
-
 	$(divImagem).css("top",pY+"px");
 	$(divImagem).css("left",pX+"px");
 }
-//alert(screen.width+" e "+$(window).width());
 });
