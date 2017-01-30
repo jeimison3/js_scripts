@@ -38,7 +38,12 @@ function FormViewImg(img){
 	
 	
 	var divImage = document.createElement( "div" );
-	if(window.innerHeight<window.innerWidth){
+		var Valor2 = false;
+		if(img.naturalWidth===undefined)
+		Valor2=(window.innerWidth>img.width);
+		else Valor2=(window.innerWidth>img.naturalWidth);
+	
+	if((window.innerHeight<window.innerWidth)&&(Valor2)){
 	
 	var alturaImg = (window.innerHeight*0.9);
 		if(img.naturalWidth===undefined)
