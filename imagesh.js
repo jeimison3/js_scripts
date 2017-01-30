@@ -36,8 +36,11 @@ function FormViewImg(img){
 	var divImage = document.createElement( "div" );
 		var Valor2 = false;
 		if(img.naturalWidth===undefined)
-		Valor2=(window.innerWidth>img.width)||(img.height>img.width);
-		else Valor2=(window.innerWidth>img.naturalWidth)||(img.naturalHeight>img.naturalWidth);
+		Valor2=(img.height<img.width);
+		else Valor2=(img.naturalHeight<img.naturalWidth);
+		if(img.naturalWidth===undefined){
+			 if(window.innerWidth<img.width) Valor2 = !Valor2;
+		}else{ if(window.innerWidth<img.naturalWidth) Valor2 = !Valor2;}
 	
 	if((Valor2)){//Altera largura usando altura
 	
